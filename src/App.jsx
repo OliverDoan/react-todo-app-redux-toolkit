@@ -1,9 +1,7 @@
-import './assets/scss/styles.scss'
-
 import { Typography, Divider } from 'antd'
-import TodoList from './components/TodoList'
-import Filters from './components/Filters'
-
+import TodoList from '@components/TodoList'
+import Filters from '@components/Filters'
+import '@assets/scss/styles.scss'
 const { Title } = Typography
 
 function App() {
