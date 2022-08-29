@@ -9,9 +9,10 @@ import { todoListSelector } from '../../redux/selectors'
 export default function TodoList() {
   const [todoName, setTodoName] = useState('')
   const [priority, setPriority] = useState('Medium')
-
+  // const todoList = useSelector((state) => state.todoList)
   const todoList = useSelector(todoListSelector)
 
+  // dispatch là 1 function
   const dispatch = useDispatch()
 
   const handleAddButtonClick = () => {

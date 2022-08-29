@@ -10,6 +10,8 @@ const initState = {
     { id: 3, name: 'Learn JavaScript', completed: false, priority: 'Low' },
   ],
 }
+
+// reducer là 1 function
 const rootReducer = (state = initState, action) => {
   switch (action.type) {
     case 'todoList/addTodo':
