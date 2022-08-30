@@ -1,7 +1,7 @@
 import { Col, Row, Input, Button, Select, Tag } from 'antd'
 import Todo from '../Todo'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo } from '../../redux/actions'
+import { addTodo, deleteTodo } from '../../redux/actions'
 import { v4 as uuidv4 } from 'uuid'
 import { useState } from 'react'
 import { todoListSelector } from '../../redux/selectors'
@@ -15,21 +15,28 @@ export default function TodoList() {
   const dispatch = useDispatch()
 
   const handleAddButtonClick = () => {
-    dispatch(
-      addTodo({
-        id: uuidv4(),
-        name: todoName,
-        priority: priority,
-        completed: false,
-      })
-    )
+    todoName &&
+      dispatch(
+        addTodo({
+          id: uuidv4(),
+          name: todoName,
+          priority: priority,
+          completed: false,
+        })
+      )
 
     setTodoName('')
     setPriority('Medium')
   }
-
+  const handleDeleteButtonClick = (id) => {
+    id &&
+      dispatch(
+        deleteTodo({
+          id,
+        })
+      )
+  }
   const handleInputChange = (e) => {
-    console.log('handleInputChange', e.target.value)
     setTodoName(e.target.value)
   }
 
@@ -42,11 +49,12 @@ export default function TodoList() {
       <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
         {todoList.map((todo) => (
           <Todo
-            key={todo.id}
-            id={todo.id}
-            name={todo.name}
-            prioriry={todo.priority}
-            completed={todo.completed}
+            key={todo?.id}
+            id={todo?.id}
+            name={todo?.name}
+            priority={todo?.priority}
+            completed={todo?.completed}
+            handleDeleteButtonClick={handleDeleteButtonClick}
           />
         ))}
       </Col>

@@ -7,7 +7,7 @@ const priorityColorMapping = {
   Low: 'gray',
 }
 
-export default function Todo({ name, prioriry }) {
+export default function Todo({ id, name, priority, handleDeleteButtonClick }) {
   const [checked, setChecked] = useState(false)
 
   const toggleCheckbox = () => {
@@ -25,8 +25,9 @@ export default function Todo({ name, prioriry }) {
       <Checkbox checked={checked} onChange={toggleCheckbox}>
         {name}
       </Checkbox>
-      <Tag color={priorityColorMapping[prioriry]} style={{ margin: 0 }}>
-        {prioriry}
+      <button onClick={() => handleDeleteButtonClick(id)}>hé lo</button>
+      <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
+        {priority}
       </Tag>
     </Row>
   )
