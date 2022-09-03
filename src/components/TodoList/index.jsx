@@ -1,13 +1,14 @@
 import { Col, Row, Input, Button, Select, Tag } from 'antd'
 import Todo from '../Todo'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo, deleteTodo } from '../../redux/actions'
+import { addTodo, deleteTodo, updateTodo } from '../../redux/actions'
 import { v4 as uuidv4 } from 'uuid'
 import { useState } from 'react'
 import { todoListSelector } from '../../redux/selectors'
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState('')
+  const [updateTask, setUpdateTask] = useState('')
   const [priority, setPriority] = useState('Medium')
   // const todoList = useSelector((state) => state.todoList)
   const todoList = useSelector(todoListSelector)
@@ -29,11 +30,20 @@ export default function TodoList() {
     setTodoName('')
     setPriority('Medium')
   }
-  const handleDeleteButtonClick = (id) => {
+  const handleDelete = (id) => {
     id &&
       dispatch(
         deleteTodo({
           id,
+        })
+      )
+  }
+  const handleUpdate = (id) => {
+    id &&
+      dispatch(
+        updateTodo({
+          id,
+          updateTask,
         })
       )
   }
@@ -55,7 +65,8 @@ export default function TodoList() {
             name={todo?.name}
             priority={todo?.priority}
             completed={todo?.completed}
-            handleDeleteButtonClick={handleDeleteButtonClick}
+            handleDelete={handleDelete}
+            update={handleUpdate}
           />
         ))}
       </Col>

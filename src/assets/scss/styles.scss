@@ -1,5 +1,7 @@
 @import '~antd/dist/antd.css';
-
+body {
+  background-color: #333;
+}
 .ant-select-multiple .ant-select-selection-item {
   height: 27px;
 }

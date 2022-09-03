@@ -24,6 +24,17 @@ const rootReducer = (state = initState, action) => {
         ...state,
         todoList: [...state.todoList].filter((item) => item.id !== action.payload?.id),
       }
+    case 'todoList/updateTodo':
+      const updateTodos = state.todoList.map((item) => {
+        if (item.id === action.payload?.id) {
+          return [...state.todoList, action.payload.updateTask]
+        }
+        // return state
+      })
+      return {
+        ...state,
+        todoList: updateTodos,
+      }
     default:
       return state
   }

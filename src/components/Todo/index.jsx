@@ -7,13 +7,19 @@ const priorityColorMapping = {
   Low: 'gray',
 }
 
-export default function Todo({ id, name, priority, handleDeleteButtonClick }) {
+export default function Todo({ id, name, priority, handleDelete, update }) {
   const [checked, setChecked] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [editTodo, setEditTodo] = useState(name)
 
   const toggleCheckbox = () => {
     setChecked(!checked)
   }
-
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    update(id, editTodo)
+    setIsEditing(false)
+  }
   return (
     <Row
       justify='space-between'
@@ -22,10 +28,28 @@ export default function Todo({ id, name, priority, handleDeleteButtonClick }) {
         ...(checked ? { opacity: 0.5, textDecoration: 'line-through' } : {}),
       }}
     >
-      <Checkbox checked={checked} onChange={toggleCheckbox}>
-        {name}
-      </Checkbox>
-      <button onClick={() => handleDeleteButtonClick(id)}>hé lo</button>
+      {isEditing ? (
+        <>
+          <form onSubmit={handleUpdate}>
+            <input
+              type='text'
+              value={editTodo}
+              onChange={(e) => {
+                setEditTodo(e.target.value)
+              }}
+            />
+            <button>Update</button>
+          </form>
+        </>
+      ) : (
+        <Checkbox checked={checked} onChange={toggleCheckbox}>
+          {name}
+        </Checkbox>
+      )}
+
+      <button onClick={() => handleDelete(id)}>delete</button>
+      <button onClick={() => setIsEditing(true)}>update</button>
+
       <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
         {priority}
       </Tag>

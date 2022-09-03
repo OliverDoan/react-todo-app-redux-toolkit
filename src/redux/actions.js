@@ -12,3 +12,9 @@ export const deleteTodo = (id = '') => {
     payload: id,
   }
 }
+export const updateTodo = (data = {}) => {
+  return {
+    type: 'todoList/updateTodo',
+    payload: data,
+  }
+}
