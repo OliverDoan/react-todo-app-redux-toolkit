@@ -1,5 +1,6 @@
-import { Row, Tag, Checkbox } from 'antd'
+// import { Row, Tag, Checkbox } from 'antd'
 import { useState } from 'react'
+import { Col, Row, Input, Button, Select, Tag, Checkbox } from 'antd'
 
 const priorityColorMapping = {
   High: 'red',
@@ -42,17 +43,17 @@ export default function Todo({ id, name, priority, handleDelete, update }) {
           </form>
         </>
       ) : (
-        <Checkbox checked={checked} onChange={toggleCheckbox}>
-          {name}
-        </Checkbox>
+        <>
+          <Checkbox checked={checked} onChange={toggleCheckbox} />
+          <span>{name}</span>
+          <button onClick={() => handleDelete(id)}>delete</button>
+          <button onClick={() => setIsEditing(true)}>update</button>
+
+          <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
+            {priority}
+          </Tag>
+        </>
       )}
-
-      <button onClick={() => handleDelete(id)}>delete</button>
-      <button onClick={() => setIsEditing(true)}>update</button>
-
-      <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
-        {priority}
-      </Tag>
     </Row>
   )
 }

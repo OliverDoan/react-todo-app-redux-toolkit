@@ -38,12 +38,12 @@ export default function TodoList() {
         })
       )
   }
-  const handleUpdate = (id) => {
+  const handleUpdate = (id, editName) => {
     id &&
       dispatch(
         updateTodo({
           id,
-          updateTask,
+          editName,
         })
       )
   }
@@ -56,20 +56,7 @@ export default function TodoList() {
   }
 
   return (
-    <Row style={{ height: 'calc(100% - 40px)' }}>
-      <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
-        {todoList.map((todo) => (
-          <Todo
-            key={todo?.id}
-            id={todo?.id}
-            name={todo?.name}
-            priority={todo?.priority}
-            completed={todo?.completed}
-            handleDelete={handleDelete}
-            update={handleUpdate}
-          />
-        ))}
-      </Col>
+    <Row style={{ height: '100%' }}>
       <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>
           <Input value={todoName} onChange={handleInputChange} />
@@ -88,6 +75,19 @@ export default function TodoList() {
             Add
           </Button>
         </Input.Group>
+      </Col>
+      <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
+        {todoList.map((todo) => (
+          <Todo
+            key={todo?.id}
+            id={todo?.id}
+            name={todo?.name}
+            priority={todo?.priority}
+            completed={todo?.completed}
+            handleDelete={handleDelete}
+            update={handleUpdate}
+          />
+        ))}
       </Col>
     </Row>
   )
