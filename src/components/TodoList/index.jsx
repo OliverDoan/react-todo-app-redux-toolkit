@@ -10,6 +10,8 @@ export default function TodoList() {
   const [todoName, setTodoName] = useState('')
   const [updateTask, setUpdateTask] = useState('')
   const [priority, setPriority] = useState('Medium')
+  const [idUpdate, setIdUpdate] = useState(-1)
+
   // const todoList = useSelector((state) => state.todoList)
   const todoList = useSelector(todoListSelector)
 
@@ -38,12 +40,13 @@ export default function TodoList() {
         })
       )
   }
-  const handleUpdate = (id, editName) => {
+  const handleUpdate = (id, editName, editPriority) => {
     id &&
       dispatch(
         updateTodo({
           id,
           editName,
+          editPriority,
         })
       )
   }
@@ -86,6 +89,10 @@ export default function TodoList() {
             completed={todo?.completed}
             handleDelete={handleDelete}
             update={handleUpdate}
+            idUpdate={idUpdate}
+            setIdUpdate={setIdUpdate}
+            handleInputChange={handleInputChange}
+            handlePriorityChange={handlePriorityChange}
           />
         ))}
       </Col>

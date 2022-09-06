@@ -32,6 +32,7 @@ const rootReducer = (state = initState, action) => {
             return {
               ...todo,
               name: action.payload?.editName,
+              priority: action.payload?.editPriority,
             }
           }
           return todo
