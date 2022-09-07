@@ -1,70 +1,65 @@
 // import { Row, Tag, Checkbox } from 'antd'
+import { DeleteOutlined, FormOutlined } from '@ant-design/icons'
+import { Button, Checkbox, Col, Divider, Input, Row, Select } from 'antd'
 import { useState } from 'react'
-import { Col, Row, Input, Button, Select, Tag, Checkbox } from 'antd'
-
 const priorityColorMapping = {
   High: 'red',
-  Medium: 'blue',
+  Medium: 'black',
   Low: 'gray',
 }
 
-export default function Todo({ id, name, priority, handleDelete, update, idUpdate, setIdUpdate }) {
+export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setIdUpdate }) {
   const [checked, setChecked] = useState(false)
-  const [editTodo, setEditTodo] = useState(name)
-  const [editTodoPriority, setEditTodoPriority] = useState(priority)
+  const [editTodoName, setEditTodoName] = useState(todo.name)
+  const [editTodoPriority, setEditTodoPriority] = useState(todo.priority)
 
   const toggleCheckbox = () => {
     setChecked(!checked)
   }
-  const handleUpdate = (e) => {
+  const handleUpdateButtonClick = (e) => {
     console.log('handleUpdated run')
     e.preventDefault()
-    update(id, editTodo, editTodoPriority)
+    handleUpdate(todo.id, editTodoName, editTodoPriority)
     setIdUpdate(-1)
-  }
-
-  const handleGetIdUpdate = (id) => {
-    setIdUpdate(id)
-  }
-
-  const handlePriorityChange = (value) => {
-    setEditTodoPriority(value)
   }
 
   return (
     <Row
       justify='space-between'
+      align='middle'
       style={{
-        marginBottom: 3,
+        marginTop: 15,
         ...(checked ? { opacity: 0.5, textDecoration: 'line-through' } : {}),
       }}
     >
-      {idUpdate == id ? (
+      {idUpdate === todo.id ? (
         <>
           <Col span={24}>
             <Input.Group style={{ display: 'flex' }} compact>
               <Input
-                value={editTodo}
+                value={editTodoName}
                 onChange={(e) => {
-                  setEditTodo(e.target.value)
+                  setEditTodoName(e.target.value)
                 }}
               />
               <Select
                 defaultValue='Medium'
                 value={editTodoPriority}
-                onChange={handlePriorityChange}
+                onChange={(value) => {
+                  setEditTodoPriority(value)
+                }}
               >
                 <Select.Option value='High' label='High'>
-                  <Tag color='red'>High</Tag>
+                  <span>High</span>
                 </Select.Option>
                 <Select.Option value='Medium' label='Medium'>
-                  <Tag color='blue'>Medium</Tag>
+                  <span>Medium</span>
                 </Select.Option>
                 <Select.Option value='Low' label='Low'>
-                  <Tag color='gray'>Low</Tag>
+                  <span>Low</span>
                 </Select.Option>
               </Select>
-              <Button type='primary' onClick={handleUpdate}>
+              <Button type='primary' onClick={handleUpdateButtonClick}>
                 Update
               </Button>
             </Input.Group>
@@ -72,14 +67,20 @@ export default function Todo({ id, name, priority, handleDelete, update, idUpdat
         </>
       ) : (
         <>
-          <Checkbox checked={checked} onChange={toggleCheckbox} />
-          <span>{name}</span>
-          <button onClick={() => handleDelete(id)}>delete</button>
-          <button onClick={() => handleGetIdUpdate(id)}>update</button>
-
-          <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
-            {priority}
-          </Tag>
+          <Checkbox checked={checked} onChange={toggleCheckbox}>
+            <span style={{ color: `${priorityColorMapping[todo.priority]}` }}>{todo.name}</span>
+          </Checkbox>
+          <div>
+            <FormOutlined
+              onClick={() => setIdUpdate(todo.id)}
+              style={{ color: '#1890ff', marginRight: '15px' }}
+            />
+            <DeleteOutlined
+              onClick={() => handleDelete(todo.id)}
+              style={{ color: 'red', marginRight: '5px' }}
+            />
+          </div>
+          <Divider style={{ margin: '10px 0' }} />
         </>
       )}
     </Row>

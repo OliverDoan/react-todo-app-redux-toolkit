@@ -8,7 +8,6 @@ import { todoListSelector } from '../../redux/selectors'
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState('')
-  const [updateTask, setUpdateTask] = useState('')
   const [priority, setPriority] = useState('Medium')
   const [idUpdate, setIdUpdate] = useState(-1)
 
@@ -32,6 +31,7 @@ export default function TodoList() {
     setTodoName('')
     setPriority('Medium')
   }
+
   const handleDelete = (id) => {
     id &&
       dispatch(
@@ -40,6 +40,7 @@ export default function TodoList() {
         })
       )
   }
+
   const handleUpdate = (id, editName, editPriority) => {
     id &&
       dispatch(
@@ -50,28 +51,32 @@ export default function TodoList() {
         })
       )
   }
-  const handleInputChange = (e) => {
-    setTodoName(e.target.value)
-  }
-
-  const handlePriorityChange = (value) => {
-    setPriority(value)
-  }
 
   return (
     <Row style={{ height: '100%' }}>
       <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>
-          <Input value={todoName} onChange={handleInputChange} />
-          <Select defaultValue='Medium' value={priority} onChange={handlePriorityChange}>
+          <Input
+            value={todoName}
+            onChange={(e) => {
+              setTodoName(e.target.value)
+            }}
+          />
+          <Select
+            defaultValue='Medium'
+            value={priority}
+            onChange={(value) => {
+              setPriority(value)
+            }}
+          >
             <Select.Option value='High' label='High'>
-              <Tag color='red'>High</Tag>
+              <span>High</span>
             </Select.Option>
             <Select.Option value='Medium' label='Medium'>
-              <Tag color='blue'>Medium</Tag>
+              <span>Medium</span>
             </Select.Option>
             <Select.Option value='Low' label='Low'>
-              <Tag color='gray'>Low</Tag>
+              <span>Low</span>
             </Select.Option>
           </Select>
           <Button type='primary' onClick={handleAddButtonClick}>
@@ -83,16 +88,11 @@ export default function TodoList() {
         {todoList.map((todo) => (
           <Todo
             key={todo?.id}
-            id={todo?.id}
-            name={todo?.name}
-            priority={todo?.priority}
-            completed={todo?.completed}
+            todo={todo}
             handleDelete={handleDelete}
-            update={handleUpdate}
+            handleUpdate={handleUpdate}
             idUpdate={idUpdate}
             setIdUpdate={setIdUpdate}
-            handleInputChange={handleInputChange}
-            handlePriorityChange={handlePriorityChange}
           />
         ))}
       </Col>

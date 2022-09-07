@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ant-design/icons': ^4.7.0
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
   '@vitejs/plugin-react': ^2.0.0
@@ -15,6 +16,7 @@ specifiers:
   vite: ^3.0.0
 
 dependencies:
+  '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
   antd: 4.22.7_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
