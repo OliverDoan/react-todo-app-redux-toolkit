@@ -9,7 +9,7 @@ const priorityColorMapping = {
 }
 
 export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setIdUpdate }) {
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(todo.completed)
   const [editTodoName, setEditTodoName] = useState(todo.name)
   const [editTodoPriority, setEditTodoPriority] = useState(todo.priority)
 
@@ -17,7 +17,6 @@ export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setId
     setChecked(!checked)
   }
   const handleUpdateButtonClick = (e) => {
-    console.log('handleUpdated run')
     e.preventDefault()
     handleUpdate(todo.id, editTodoName, editTodoPriority)
     setIdUpdate(-1)
