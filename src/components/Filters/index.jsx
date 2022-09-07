@@ -42,8 +42,8 @@ export default function Filters() {
         </Typography.Paragraph>
         <Radio.Group value={filterStatus} onChange={handleStatusChange}>
           <Radio value='All'>All</Radio>
-          <Radio value='Completed'>Completed</Radio>
           <Radio value='Todo'>To do</Radio>
+          <Radio value='Completed'>Completed</Radio>
         </Radio.Group>
       </Col>
       <Col sm={24}>

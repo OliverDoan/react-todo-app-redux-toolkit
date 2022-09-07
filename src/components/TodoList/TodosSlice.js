@@ -10,7 +10,7 @@ const todoListReducer = (state = initState, action) => {
       return [...state, action.payload]
 
     case 'todoList/deleteTodo':
-      return [...state].filter((todo) => todo.id !== action.payload?.id)
+      return state.filter((todo) => todo.id !== action.payload?.id)
 
     case 'todoList/updateTodo':
       return [...state].map((todo) => {
@@ -23,7 +23,10 @@ const todoListReducer = (state = initState, action) => {
         }
         return todo
       })
-
+    case 'todoList/toggleTodoStatus':
+      return state.map((todo) =>
+        todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo
+      )
     default:
       return state
   }

@@ -2,6 +2,8 @@
 import { DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Col, Divider, Input, Row, Select } from 'antd'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleTodoStatus } from '../../redux/actions'
 const priorityColorMapping = {
   High: 'red',
   Medium: 'black',
@@ -12,9 +14,10 @@ export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setId
   const [checked, setChecked] = useState(todo.completed)
   const [editTodoName, setEditTodoName] = useState(todo.name)
   const [editTodoPriority, setEditTodoPriority] = useState(todo.priority)
-
+  const dispatch = useDispatch()
   const toggleCheckbox = () => {
     setChecked(!checked)
+    dispatch(toggleTodoStatus(todo.id))
   }
   const handleUpdateButtonClick = (e) => {
     e.preventDefault()
@@ -66,9 +69,11 @@ export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setId
         </>
       ) : (
         <>
-          <Checkbox checked={checked} onChange={toggleCheckbox}>
+          <div>
+            <Checkbox checked={checked} onChange={toggleCheckbox} style={{ marginRight: '10px' }} />
             <span style={{ color: `${priorityColorMapping[todo.priority]}` }}>{todo.name}</span>
-          </Checkbox>
+          </div>
+
           <div>
             <FormOutlined
               onClick={() => setIdUpdate(todo.id)}
