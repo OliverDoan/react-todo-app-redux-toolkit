@@ -8,7 +8,7 @@ function App() {
   return (
     <div
       style={{
-        width: 400,
+        width: 500,
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
@@ -19,8 +19,8 @@ function App() {
         height: '90vh',
       }}
     >
-      {/* <Title style={{ textAlign: 'center' }}>TODO APP with REDUX</Title> */}
-      {/* <Filters /> */}
+      <Title style={{ textAlign: 'center' }}>TODO APP with REDUX</Title>
+      <Filters />
       {/* <Divider /> */}
       <TodoList />
     </div>

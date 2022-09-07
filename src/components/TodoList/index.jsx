@@ -1,10 +1,11 @@
-import { Col, Row, Input, Button, Select, Tag } from 'antd'
-import Todo from '../Todo'
-import { useDispatch, useSelector } from 'react-redux'
-import { addTodo, deleteTodo, updateTodo } from '../../redux/actions'
-import { v4 as uuidv4 } from 'uuid'
+import { PlusOutlined } from '@ant-design/icons'
+import { Button, Col, Input, Row, Select } from 'antd'
 import { useState } from 'react'
-import { todoListSelector } from '../../redux/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
+import { addTodo, deleteTodo, updateTodo } from '../../redux/actions'
+import { todoListRemainingSelector } from '../../redux/selectors'
+import Todo from '../Todo'
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState('')
@@ -12,7 +13,7 @@ export default function TodoList() {
   const [idUpdate, setIdUpdate] = useState(-1)
 
   // const todoList = useSelector((state) => state.todoList)
-  const todoList = useSelector(todoListSelector)
+  const todoList = useSelector(todoListRemainingSelector)
 
   // dispatch là 1 function
   const dispatch = useDispatch()
@@ -54,6 +55,18 @@ export default function TodoList() {
 
   return (
     <Row style={{ height: '100%' }}>
+      <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
+        {todoList.map((todo) => (
+          <Todo
+            key={todo?.id}
+            todo={todo}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
+            idUpdate={idUpdate}
+            setIdUpdate={setIdUpdate}
+          />
+        ))}
+      </Col>
       <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>
           <Input
@@ -61,6 +74,7 @@ export default function TodoList() {
             onChange={(e) => {
               setTodoName(e.target.value)
             }}
+            placeholder='Add a new task'
           />
           <Select
             defaultValue='Medium'
@@ -80,21 +94,9 @@ export default function TodoList() {
             </Select.Option>
           </Select>
           <Button type='primary' onClick={handleAddButtonClick}>
-            Add
+            <PlusOutlined />
           </Button>
         </Input.Group>
-      </Col>
-      <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
-        {todoList.map((todo) => (
-          <Todo
-            key={todo?.id}
-            todo={todo}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-            idUpdate={idUpdate}
-            setIdUpdate={setIdUpdate}
-          />
-        ))}
       </Col>
     </Row>
   )

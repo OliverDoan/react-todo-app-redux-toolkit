@@ -38,6 +38,11 @@ const rootReducer = (state = initState, action) => {
           return todo
         }),
       }
+    case 'filters/searchFilterChange':
+      return {
+        ...state,
+        filters: { ...state.filters, search: action.payload },
+      }
     default:
       return state
   }

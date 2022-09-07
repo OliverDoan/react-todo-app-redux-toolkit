@@ -16,6 +16,7 @@
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "reselect": "^4.1.6",
     "sass": "^1.54.1",
     "uuid": "^8.3.2"
   },

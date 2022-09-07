@@ -11,6 +11,7 @@ specifiers:
   react-redux: ^8.0.2
   redux: ^4.2.0
   redux-devtools-extension: ^2.13.9
+  reselect: ^4.1.6
   sass: ^1.54.1
   uuid: ^8.3.2
   vite: ^3.0.0
@@ -23,6 +24,7 @@ dependencies:
   react-redux: 8.0.2_ps4ywwwjjeajezffxxirqk36qa
   redux: 4.2.0
   redux-devtools-extension: 2.13.9_redux@4.2.0
+  reselect: 4.1.6
   sass: 1.54.5
   uuid: 8.3.2
 
@@ -1628,6 +1630,10 @@ packages:
 
   /regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
+    dev: false
+
+  /reselect/4.1.6:
+    resolution: {integrity: sha512-ZovIuXqto7elwnxyXbBtCPo9YFEr3uJqj2rRbcOOog1bmu2Ag85M4hixSwFWyaBMKXNgvPaJ9OSu9SkBPIeJHQ==}
     dev: false
 
   /resize-observer-polyfill/1.5.1:
