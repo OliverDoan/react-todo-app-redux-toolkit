@@ -1,7 +1,41 @@
 @import "~antd/dist/antd.css";
+
 body {
   background-color: #333;
 }
+
 .ant-select-multiple .ant-select-selection-item {
   height: 27px;
+}
+
+.ant-radio {
+  display: none;
+}
+
+.ant-radio-wrapper-checked {
+  color: #1890ff;
+  font-weight: bold;
+  span {
+    border-bottom: 1px solid;
+    padding: 0;
+  }
+}
+
+.ant-radio-wrapper {
+  span {
+    margin: 0 10px;
+    padding: 0;
+  }
+}
+
+//animation scrollbar css
+.scroll::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(255, 255, 255, 0.25);
+  padding-right: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: #50a1ec;
+  border-radius: 8px;
 }

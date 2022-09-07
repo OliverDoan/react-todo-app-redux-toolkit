@@ -30,7 +30,6 @@ export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setId
       justify='space-between'
       align='middle'
       style={{
-        marginTop: 15,
         ...(checked ? { opacity: 0.5, textDecoration: 'line-through' } : {}),
       }}
     >
@@ -65,23 +64,30 @@ export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setId
                 Update
               </Button>
             </Input.Group>
+            <Divider style={{ margin: '10px 0' }} />
           </Col>
         </>
       ) : (
         <>
           <div>
             <Checkbox checked={checked} onChange={toggleCheckbox} style={{ marginRight: '10px' }} />
-            <span style={{ color: `${priorityColorMapping[todo.priority]}` }}>{todo.name}</span>
+            <span
+              style={{ color: `${priorityColorMapping[todo.priority]}` }}
+              onDoubleClick={() => setIdUpdate(todo.id)}
+            >
+              {todo.name}
+            </span>
           </div>
 
           <div>
-            <FormOutlined
+            {/* <FormOutlined
               onClick={() => setIdUpdate(todo.id)}
               style={{ color: '#1890ff', marginRight: '15px' }}
-            />
+            /> */}
             <DeleteOutlined
               onClick={() => handleDelete(todo.id)}
               style={{ color: 'red', marginRight: '5px' }}
+              className='deleteBtn'
             />
           </div>
           <Divider style={{ margin: '10px 0' }} />
