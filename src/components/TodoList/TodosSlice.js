@@ -12,6 +12,10 @@ const todoListReducer = (state = initState, action) => {
     case 'todoList/deleteTodo':
       return state.filter((todo) => todo.id !== action.payload?.id)
 
+    case 'todoList/deleteAllTodo':
+      state.splice(0)
+      return [...state]
+
     case 'todoList/updateTodo':
       return [...state].map((todo) => {
         if (todo.id === action.payload?.id) {

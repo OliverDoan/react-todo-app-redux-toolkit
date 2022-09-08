@@ -2,7 +2,12 @@ import { Button } from 'antd'
 import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { priorityFilterChange, searchFilterChange, statusFilterChange } from '../../redux/actions'
+import {
+  deleteAllTodo,
+  priorityFilterChange,
+  searchFilterChange,
+  statusFilterChange,
+} from '../../redux/actions'
 
 const { Search } = Input
 
@@ -27,7 +32,10 @@ export default function Filters() {
     setFilterPriorities(value)
     dispatch(priorityFilterChange(value))
   }
-
+  const handleDeleteAllClick = () => {
+    console.log('handleDeleteAllClick run')
+    dispatch(deleteAllTodo())
+  }
   return (
     <Row justify='center' style={{ marginTop: '10px', marginBottom: '10px', width: '100%' }}>
       {/* <Col span={24}>
@@ -46,7 +54,9 @@ export default function Filters() {
           <Radio value='Todo'>To do</Radio>
           <Radio value='Completed'>Completed</Radio>
         </Radio.Group>
-        <Button type='primary'>Clear All</Button>
+        <Button type='primary' onClick={handleDeleteAllClick}>
+          Clear All
+        </Button>
       </Col>
       {/* <Col sm={24}>
         <Typography.Paragraph style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}>
