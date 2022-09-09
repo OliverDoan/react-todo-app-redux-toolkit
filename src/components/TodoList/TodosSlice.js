@@ -1,7 +1,7 @@
 const initState = [
   { id: 1, name: 'Learn Yoga', completed: false, priority: 'Medium' },
-  { id: 2, name: 'Learn Redux', completed: true, priority: 'High' },
-  { id: 3, name: 'Learn JavaScript', completed: false, priority: 'Low' },
+  // { id: 2, name: 'Learn Redux', completed: true, priority: 'High' },
+  // { id: 3, name: 'Learn JavaScript', completed: false, priority: 'Low' },
 ]
 
 const todoListReducer = (state = initState, action) => {
@@ -13,8 +13,7 @@ const todoListReducer = (state = initState, action) => {
       return state.filter((todo) => todo.id !== action.payload?.id)
 
     case 'todoList/deleteAllTodo':
-      state.splice(0)
-      return [...state]
+      return []
 
     case 'todoList/updateTodo':
       return [...state].map((todo) => {
@@ -27,6 +26,7 @@ const todoListReducer = (state = initState, action) => {
         }
         return todo
       })
+
     case 'todoList/toggleTodoStatus':
       return state.map((todo) =>
         todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo

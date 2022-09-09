@@ -72,7 +72,7 @@ export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setId
           <div>
             <Checkbox checked={checked} onChange={toggleCheckbox} style={{ marginRight: '10px' }} />
             <span
-              style={{ color: `${priorityColorMapping[todo.priority]}` }}
+              style={{ color: `${priorityColorMapping[todo.priority]}`, cursor: 'pointer' }}
               onDoubleClick={() => setIdUpdate(todo.id)}
             >
               {todo.name}
@@ -86,7 +86,7 @@ export default function Todo({ todo, handleDelete, handleUpdate, idUpdate, setId
             /> */}
             <DeleteOutlined
               onClick={() => handleDelete(todo.id)}
-              style={{ color: 'red', marginRight: '5px' }}
+              style={{ marginRight: '5px' }}
               className='deleteBtn'
             />
           </div>

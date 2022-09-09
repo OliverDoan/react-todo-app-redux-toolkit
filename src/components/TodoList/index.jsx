@@ -1,5 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons'
-import { Button, Col, Input, Row, Select } from 'antd'
+import { Col, Input, Row, Select } from 'antd'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
@@ -12,27 +11,14 @@ export default function TodoList() {
   const [todoName, setTodoName] = useState('')
   const [priority, setPriority] = useState('Medium')
   const [idUpdate, setIdUpdate] = useState(-1)
+  const [isExist, setIsExist] = useState(false)
 
   // const todoList = useSelector((state) => state.todoList)
   const todoList = useSelector(todoListRemainingSelector)
+  console.log('🚀 ~ file: index.jsx ~ line 18 ~ TodoList ~ todoList', todoList)
 
   // dispatch là 1 function
   const dispatch = useDispatch()
-
-  const handleAddButtonClick = () => {
-    todoName &&
-      dispatch(
-        addTodo({
-          id: uuidv4(),
-          name: todoName,
-          priority: priority,
-          completed: false,
-        })
-      )
-
-    setTodoName('')
-    setPriority('Medium')
-  }
 
   const handleDelete = (id) => {
     id &&
@@ -53,8 +39,12 @@ export default function TodoList() {
         })
       )
   }
-  const onAddTodo = (event) => {
-    if (event.key === 'Enter' && todoName) {
+
+  const handleAddButtonClick = (event) => {
+    const isFound = todoList.some((todo) => todo.name === todoName)
+    console.log('🚀 ~ file: index.jsx ~ line 46 ~ handleAddButtonClick ~ isFound', isFound)
+    setIsExist(isFound)
+    if (event.key === 'Enter' && todoName && !isFound) {
       dispatch(
         addTodo({
           id: uuidv4(),
@@ -95,13 +85,20 @@ export default function TodoList() {
               setTodoName(e.target.value)
             }}
             placeholder='Add a new task'
-            onKeyPress={onAddTodo}
+            onKeyPress={handleAddButtonClick}
           />
 
           {/* <Button type='primary' onClick={handleAddButtonClick}>
             <PlusOutlined />
           </Button> */}
         </Input.Group>
+        {isExist ? (
+          <p className='error' style={{ marginBottom: '0' }}>
+            A task already exists
+          </p>
+        ) : (
+          ''
+        )}
       </Col>
       <Filters />
       <Col

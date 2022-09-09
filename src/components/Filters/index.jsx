@@ -1,5 +1,4 @@
-import { Button } from 'antd'
-import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd'
+import { Button, Col, Input, Radio, Row } from 'antd'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {
@@ -33,7 +32,6 @@ export default function Filters() {
     dispatch(priorityFilterChange(value))
   }
   const handleDeleteAllClick = () => {
-    console.log('handleDeleteAllClick run')
     dispatch(deleteAllTodo())
   }
   return (

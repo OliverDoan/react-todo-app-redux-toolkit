@@ -1,5 +1,9 @@
 @import "~antd/dist/antd.css";
 
+* {
+  transition: all 0.3 ease;
+}
+
 body {
   background-color: #333;
 }
@@ -23,12 +27,16 @@ body {
 
 .ant-radio-wrapper {
   span {
-    margin: 0 10px;
+    margin-right: 20px;
     padding: 0;
   }
 }
 
 //animation scrollbar css
+.scroll {
+  padding-right: 5px;
+}
+
 .scroll::-webkit-scrollbar {
   width: 6px;
   background-color: rgba(255, 255, 255, 0.25);
@@ -38,4 +46,11 @@ body {
 .scroll::-webkit-scrollbar-thumb {
   background: #50a1ec;
   border-radius: 8px;
+}
+
+.error {
+  width: 100%;
+  text-align: center;
+  font-style: italic;
+  color: red;
 }
