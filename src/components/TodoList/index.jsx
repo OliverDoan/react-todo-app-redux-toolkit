@@ -2,20 +2,17 @@ import { Col, Input, Row, Select } from 'antd'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
-import { addTodo, deleteTodo, updateTodo } from '../../redux/actions'
 import { todoListRemainingSelector } from '../../redux/selectors'
 import Filters from '../Filters'
 import Todo from '../Todo'
+import { addTodo, deleteTodo, updateTodo } from './todosSlice'
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState('')
   const [priority, setPriority] = useState('Medium')
   const [idUpdate, setIdUpdate] = useState(-1)
   const [isExist, setIsExist] = useState(false)
-
-  // const todoList = useSelector((state) => state.todoList)
   const todoList = useSelector(todoListRemainingSelector)
-  console.log('🚀 ~ file: index.jsx ~ line 18 ~ TodoList ~ todoList', todoList)
 
   // dispatch là 1 function
   const dispatch = useDispatch()
@@ -42,7 +39,6 @@ export default function TodoList() {
 
   const handleAddButtonClick = (event) => {
     const isFound = todoList.some((todo) => todo.name === todoName)
-    console.log('🚀 ~ file: index.jsx ~ line 46 ~ handleAddButtonClick ~ isFound', isFound)
     setIsExist(isFound)
     if (event.key === 'Enter' && todoName && !isFound) {
       dispatch(
@@ -58,6 +54,7 @@ export default function TodoList() {
       setPriority('Medium')
     }
   }
+
   return (
     <Row style={{ height: '80%' }}>
       <Col span={24}>

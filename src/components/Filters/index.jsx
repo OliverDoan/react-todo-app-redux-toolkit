@@ -1,12 +1,8 @@
 import { Button, Col, Input, Radio, Row } from 'antd'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {
-  deleteAllTodo,
-  priorityFilterChange,
-  searchFilterChange,
-  statusFilterChange,
-} from '../../redux/actions'
+import { deleteAllTodo } from '../TodoList/todosSlice'
+import { priorityFilterChange, searchFilterChange, statusFilterChange } from './filtersSlice'
 
 const { Search } = Input
 

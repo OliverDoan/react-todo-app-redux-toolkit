@@ -1,9 +1,10 @@
 // import { Row, Tag, Checkbox } from 'antd'
-import { DeleteOutlined, FormOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Col, Divider, Input, Row, Select } from 'antd'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleTodoStatus } from '../../redux/actions'
+import { toggleTodoStatus } from '../TodoList/todosSlice'
+
 const priorityColorMapping = {
   High: 'red',
   Medium: 'black',
