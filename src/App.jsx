@@ -1,7 +1,6 @@
-import { Typography, Divider } from 'antd'
-import TodoList from '@components/TodoList'
-import Filters from '@components/Filters'
 import '@assets/scss/styles.scss'
+import TodoList from '@components/TodoList'
+import { Typography } from 'antd'
 const { Title } = Typography
 
 function App() {
@@ -9,21 +8,15 @@ function App() {
     <div
       style={{
         width: 500,
-        margin: '0 auto',
-        display: 'flex',
+
         flexDirection: 'column',
         backgroundColor: 'white',
-        padding: 20,
-        boxShadow: '0 0 10px 4px #bfbfbf',
-        borderRadius: 5,
-        height: '90vh',
+        padding: 30,
+
+        height: '80vh',
       }}
     >
-      <Title style={{ textAlign: 'center' }}>TODO APP with REDUX</Title>
-
-      {/* <Divider /> */}
       <TodoList />
-      {/* <Filters /> */}
     </div>
   )
 }

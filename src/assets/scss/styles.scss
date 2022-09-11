@@ -1,11 +1,10 @@
 @import "~antd/dist/antd.css";
 
-* {
-  transition: all 0.3 ease;
-}
-
 body {
-  background-color: #333;
+  background: url("../images/bg.jpg") no-repeat center bottom / cover;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
 }
 
 .ant-select-multiple .ant-select-selection-item {
