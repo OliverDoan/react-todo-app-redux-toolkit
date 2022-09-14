@@ -57,7 +57,7 @@ export default function TodoList() {
 
   return (
     <Row style={{ height: '80%' }}>
-      <Col span={24}>
+      {/* <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>
           <Select
             defaultValue='Medium'
@@ -84,10 +84,6 @@ export default function TodoList() {
             placeholder='Add a new task'
             onKeyPress={handleAddButtonClick}
           />
-
-          {/* <Button type='primary' onClick={handleAddButtonClick}>
-            <PlusOutlined />
-          </Button> */}
         </Input.Group>
         {isExist ? (
           <p className='error' style={{ marginBottom: '0' }}>
@@ -97,8 +93,8 @@ export default function TodoList() {
           ''
         )}
       </Col>
-      <Filters />
-      <Col
+      <Filters /> */}
+      {/* <Col
         span={24}
         style={{ height: 'calc(100% - 40px)', overflowY: 'auto', marginTop: '10px' }}
         className='scroll'
@@ -115,7 +111,7 @@ export default function TodoList() {
             />
           ))}
         </div>
-      </Col>
+      </Col> */}
     </Row>
   )
 }
