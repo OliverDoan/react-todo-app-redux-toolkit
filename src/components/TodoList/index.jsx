@@ -57,7 +57,7 @@ export default function TodoList() {
 
   return (
     <Row style={{ height: '80%' }}>
-      {/* <Col span={24}>
+      <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>
           <Select
             defaultValue='Medium'
@@ -93,7 +93,7 @@ export default function TodoList() {
           ''
         )}
       </Col>
-      <Filters /> */}
+      <Filters />
       {/* <Col
         span={24}
         style={{ height: 'calc(100% - 40px)', overflowY: 'auto', marginTop: '10px' }}
